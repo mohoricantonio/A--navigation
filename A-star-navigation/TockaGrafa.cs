@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace A_star_navigation
 {
-    public class TockeGrafa
+    public class TockaGrafa
     {
+        public string naziv;
         public double lon;
         public double lat;
-        public List<TockeGrafa> ListaSusjeda;
-        public TockeGrafa(double lon, double lat)
+        public List<TockaGrafa> ListaSusjeda;
+        public TockaGrafa(string naziv, double lat, double lon)
         {
+            this.naziv = naziv;
             this.lon = lon;
             this.lat = lat;
-            ListaSusjeda = new List<TockeGrafa>();
+            ListaSusjeda = new List<TockaGrafa>();
         }
         
     }

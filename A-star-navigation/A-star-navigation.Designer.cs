@@ -43,6 +43,7 @@
             // map
             // 
             this.map.Bearing = 0F;
+            this.map.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.map.CanDragMap = true;
             this.map.EmptyTileColor = System.Drawing.Color.Navy;
             this.map.GrayScaleMode = false;
@@ -62,7 +63,7 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(1006, 497);
+            this.map.Size = new System.Drawing.Size(1122, 702);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
             // 
@@ -120,7 +121,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(808, 9);
+            this.label3.Location = new System.Drawing.Point(936, 3);
             this.label3.MaximumSize = new System.Drawing.Size(200, 0);
             this.label3.MinimumSize = new System.Drawing.Size(0, 100);
             this.label3.Name = "label3";
@@ -162,7 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 609);
+            this.ClientSize = new System.Drawing.Size(1123, 812);
             this.Controls.Add(this.btnDohvatiTocke);
             this.Controls.Add(this.txtNajkracaRuta);
             this.Controls.Add(this.label4);
