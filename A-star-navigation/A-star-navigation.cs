@@ -11,12 +11,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace A_star_navigation
 {
     public partial class AStarNavigationForm : Form
     {
         private List<PointLatLng> points;
+        PointLatLng A = new PointLatLng();
+        int i = 0;
         public AStarNavigationForm()
         {
             InitializeComponent();
@@ -24,27 +27,31 @@ namespace A_star_navigation
 
         private void AStarNavigationForm_Load(object sender, EventArgs e)
         {
-            SetUpMap();
-        }
-        private void SetUpMap()
-        {
             map.MapProvider = GMapProviders.UMPMap;
 
             map.MinZoom = 5;
             map.MaxZoom = 100;
-            map.Zoom = 10;
-            map.Position = new GMap.NET.PointLatLng(46.307211, 16.338444);
-            FillListOfPoints();
-
-            GMarkerGoogle marker;
-            GMapOverlay markersOverlay = new GMapOverlay("markers");
-            foreach (PointLatLng p in points)
+            map.Zoom = 11;
+            map.Position = new PointLatLng(46.307211, 16.338444);
+            map.ShowCenter = false;
+        }
+        private void SetUpMap()
+        {
+            map.Position = new PointLatLng(46.307211, 16.338444);
+            if (i==1)FillListOfPoints();
+            else if (i == 2)
             {
-                
-                marker = new GMarkerGoogle(p, GMarkerGoogleType.red_small);
-                markersOverlay.Markers.Add(marker);
+                GMarkerGoogle marker;
+            
+                foreach (PointLatLng p in points)
+                {
+                    GMapOverlay markersOverlay = new GMapOverlay("markers");
+                    marker = new GMarkerGoogle(p, GMarkerGoogleType.red_small);
+                    markersOverlay.Markers.Add(marker);
+                    map.Overlays.Add(markersOverlay);
+                }
             }
-            map.Overlays.Add(markersOverlay);
+           
         }
 
         private void FillListOfPoints()
@@ -60,6 +67,24 @@ namespace A_star_navigation
             points.Add(new PointLatLng(46.307746, 16.358401));
             points.Add(new PointLatLng(46.255633, 16.263528));
             points.Add(new PointLatLng(46.262932, 16.317419));
+        }
+
+        private void btnOdrediRutu_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnDohvatiTocke_Click(object sender, EventArgs e)
+        {
+            i++;
+            if (i == 3)
+            {
+                btnDohvatiTocke.Enabled = false;
+                btnOdrediRutu.Enabled = true;
+                txtPocetnaTocka.Enabled = true;
+                txtZavrsnaTocka.Enabled = true;
+            }
+            SetUpMap();
         }
     }
 }

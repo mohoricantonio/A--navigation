@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNajkracaRuta = new System.Windows.Forms.TextBox();
+            this.btnDohvatiTocke = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // map
@@ -61,7 +62,7 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(925, 497);
+            this.map.Size = new System.Drawing.Size(1006, 497);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
             // 
@@ -69,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Location = new System.Drawing.Point(145, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 20);
             this.label1.TabIndex = 1;
@@ -77,16 +78,18 @@
             // 
             // txtPocetnaTocka
             // 
+            this.txtPocetnaTocka.Enabled = false;
             this.txtPocetnaTocka.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPocetnaTocka.Location = new System.Drawing.Point(137, 17);
+            this.txtPocetnaTocka.Location = new System.Drawing.Point(261, 27);
             this.txtPocetnaTocka.Name = "txtPocetnaTocka";
             this.txtPocetnaTocka.Size = new System.Drawing.Size(78, 26);
             this.txtPocetnaTocka.TabIndex = 2;
             // 
             // txtZavrsnaTocka
             // 
+            this.txtZavrsnaTocka.Enabled = false;
             this.txtZavrsnaTocka.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtZavrsnaTocka.Location = new System.Drawing.Point(137, 67);
+            this.txtZavrsnaTocka.Location = new System.Drawing.Point(261, 77);
             this.txtZavrsnaTocka.Name = "txtZavrsnaTocka";
             this.txtZavrsnaTocka.Size = new System.Drawing.Size(78, 26);
             this.txtZavrsnaTocka.TabIndex = 4;
@@ -95,7 +98,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 73);
+            this.label2.Location = new System.Drawing.Point(145, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 20);
             this.label2.TabIndex = 3;
@@ -103,19 +106,21 @@
             // 
             // btnOdrediRutu
             // 
+            this.btnOdrediRutu.Enabled = false;
             this.btnOdrediRutu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOdrediRutu.Location = new System.Drawing.Point(236, 17);
+            this.btnOdrediRutu.Location = new System.Drawing.Point(360, 27);
             this.btnOdrediRutu.Name = "btnOdrediRutu";
             this.btnOdrediRutu.Size = new System.Drawing.Size(114, 78);
             this.btnOdrediRutu.TabIndex = 5;
             this.btnOdrediRutu.Text = "Odredi najkraću rutu";
             this.btnOdrediRutu.UseVisualStyleBackColor = true;
+            this.btnOdrediRutu.Click += new System.EventHandler(this.btnOdrediRutu_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(724, 23);
+            this.label3.Location = new System.Drawing.Point(808, 9);
             this.label3.MaximumSize = new System.Drawing.Size(200, 0);
             this.label3.MinimumSize = new System.Drawing.Size(0, 100);
             this.label3.Name = "label3";
@@ -127,7 +132,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(388, 17);
+            this.label4.Location = new System.Drawing.Point(512, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 7;
@@ -137,16 +142,28 @@
             // 
             this.txtNajkracaRuta.Enabled = false;
             this.txtNajkracaRuta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNajkracaRuta.Location = new System.Drawing.Point(392, 67);
+            this.txtNajkracaRuta.Location = new System.Drawing.Point(516, 77);
             this.txtNajkracaRuta.Name = "txtNajkracaRuta";
-            this.txtNajkracaRuta.Size = new System.Drawing.Size(234, 26);
+            this.txtNajkracaRuta.Size = new System.Drawing.Size(215, 26);
             this.txtNajkracaRuta.TabIndex = 8;
+            // 
+            // btnDohvatiTocke
+            // 
+            this.btnDohvatiTocke.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDohvatiTocke.Location = new System.Drawing.Point(12, 27);
+            this.btnDohvatiTocke.Name = "btnDohvatiTocke";
+            this.btnDohvatiTocke.Size = new System.Drawing.Size(114, 78);
+            this.btnDohvatiTocke.TabIndex = 9;
+            this.btnDohvatiTocke.Text = "Dohvati točke i rute (3 klika dok se sve učita)";
+            this.btnDohvatiTocke.UseVisualStyleBackColor = true;
+            this.btnDohvatiTocke.Click += new System.EventHandler(this.btnDohvatiTocke_Click);
             // 
             // AStarNavigationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 609);
+            this.ClientSize = new System.Drawing.Size(1007, 609);
+            this.Controls.Add(this.btnDohvatiTocke);
             this.Controls.Add(this.txtNajkracaRuta);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -175,6 +192,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNajkracaRuta;
+        private System.Windows.Forms.Button btnDohvatiTocke;
     }
 }
 
