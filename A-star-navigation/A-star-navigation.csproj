@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TockeGrafa.cs" />
     <EmbeddedResource Include="A-star-navigation.resx">
       <DependentUpon>A-star-navigation.cs</DependentUpon>
     </EmbeddedResource>
