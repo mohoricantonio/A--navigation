@@ -42,13 +42,18 @@ namespace A_star_navigation
             else if (i == 2)
             {
                 GMarkerGoogle marker;
-            
+                Bitmap bmpMarker;
+                int x = 0;
+                string slika = "abcdefghij";
+
                 foreach (PointLatLng p in points)
                 {
+                    bmpMarker = (Bitmap)Image.FromFile("../../markers/" + slika[x] + ".png");
                     GMapOverlay markersOverlay = new GMapOverlay("markers");
-                    marker = new GMarkerGoogle(p, GMarkerGoogleType.red_small);
+                    marker = new GMarkerGoogle(p, bmpMarker);
                     markersOverlay.Markers.Add(marker);
                     map.Overlays.Add(markersOverlay);
+                    x++;
                 }
             }
            
