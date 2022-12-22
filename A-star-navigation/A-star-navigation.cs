@@ -55,7 +55,10 @@ namespace A_star_navigation
             map.Zoom = 13;
             map.Position = new PointLatLng(46.29986, 16.32683);
             map.ShowCenter = false;
+
+            
         }
+
         private void SetUpMap()
         {
             map.Position = new PointLatLng(46.29986, 16.32683);
@@ -86,13 +89,11 @@ namespace A_star_navigation
             GMapOverlay routeOverlay = new GMapOverlay("routes");
             linija.Add(new PointLatLng(A.lat, A.lon));
             linija.Add(new PointLatLng(B.lat, B.lon));
-
             
             GMapRoute r = new GMapRoute(linija, "Linija");
             r.Stroke.Width = 3;
             r.Stroke.Color = Color.OrangeRed;
             routeOverlay.Routes.Add(r);
-            
             
             linija.RemoveAt(1);
             linija.Add(new PointLatLng(C.lat, C.lon));
@@ -205,7 +206,6 @@ namespace A_star_navigation
 
         private void FillListOfPoints()
         {
-            
             points = new List<PointLatLng>();
             points.Add(new PointLatLng(A.lat, A.lon));
             points.Add(new PointLatLng(B.lat, B.lon));
@@ -218,8 +218,6 @@ namespace A_star_navigation
             points.Add(new PointLatLng(I.lat, I.lon));
             points.Add(new PointLatLng(J.lat, J.lon));
             DodajSusjede();
-
-            
         }
 
         private void DodajSusjede()
@@ -271,7 +269,14 @@ namespace A_star_navigation
 
         private void btnOdrediRutu_Click(object sender, EventArgs e)
         {
-            
+            if(cmbPocetnaTocka.SelectedItem == null || cmbZavrsnaTocka.SelectedItem == null)
+                MessageBox.Show("Niste odabrali obje točke!");
+            else if (cmbPocetnaTocka.SelectedItem == cmbZavrsnaTocka.SelectedItem)
+                MessageBox.Show("Početna i završna točka ne mogu biti iste!");
+            else
+            {
+
+            }
         }
 
         private void btnDohvatiTocke_Click(object sender, EventArgs e)
@@ -281,8 +286,8 @@ namespace A_star_navigation
             {
                 btnDohvatiTocke.Enabled = false;
                 btnOdrediRutu.Enabled = true;
-                txtPocetnaTocka.Enabled = true;
-                txtZavrsnaTocka.Enabled = true;
+                cmbPocetnaTocka.Enabled = true;
+                cmbZavrsnaTocka.Enabled = true;
                 DrawRoutes();
             }
             SetUpMap();
