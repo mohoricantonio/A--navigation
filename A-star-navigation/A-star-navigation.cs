@@ -89,8 +89,8 @@ namespace A_star_navigation
 
             
             GMapRoute r = new GMapRoute(linija, "Linija");
-            r.Stroke.Width = 5;
-            r.Stroke.Color = Color.Green;
+            r.Stroke.Width = 3;
+            r.Stroke.Color = Color.OrangeRed;
             routeOverlay.Routes.Add(r);
             
             
