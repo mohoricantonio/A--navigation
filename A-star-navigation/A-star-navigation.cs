@@ -76,7 +76,131 @@ namespace A_star_navigation
                     map.Overlays.Add(markersOverlay);
                     x++;
                 }
+                
             }
+        }
+
+        private void DrawRoutes()
+        {
+            List<PointLatLng> linija = new List<PointLatLng>();
+            GMapOverlay routeOverlay = new GMapOverlay("routes");
+            linija.Add(new PointLatLng(A.lat, A.lon));
+            linija.Add(new PointLatLng(B.lat, B.lon));
+
+            
+            GMapRoute r = new GMapRoute(linija, "Linija");
+            r.Stroke.Width = 5;
+            r.Stroke.Color = Color.Green;
+            routeOverlay.Routes.Add(r);
+            
+            
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(C.lat, C.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(D.lat, D.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov A
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(B.lat, B.lon));
+            linija.Add(new PointLatLng(C.lat, C.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(D.lat, D.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(E.lat, E.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov B
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(C.lat, C.lon));
+            linija.Add(new PointLatLng(G.lat, G.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(I.lat, I.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov C
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(D.lat, D.lon));
+            linija.Add(new PointLatLng(F.lat, F.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(G.lat, G.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(1);
+            linija.Add(new PointLatLng(H.lat, H.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov D
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(E.lat, E.lon));
+            linija.Add(new PointLatLng(H.lat, H.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(I.lat, I.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov E
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(F.lat, F.lon));
+            linija.Add(new PointLatLng(G.lat, G.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov F
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(G.lat, G.lon));
+            linija.Add(new PointLatLng(J.lat, J.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov G
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(H.lat, H.lon));
+            linija.Add(new PointLatLng(J.lat, J.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov H
+
+            linija.RemoveAt(1);
+            linija.RemoveAt(0);
+            linija.Add(new PointLatLng(I.lat, I.lon));
+            linija.Add(new PointLatLng(J.lat, J.lon));
+            r = new GMapRoute(linija, "Linija");
+            routeOverlay.Routes.Add(r);
+            //gotov I
+            //Sa j su vec svi spojeni
+
+            map.Overlays.Add(routeOverlay);
         }
 
         private void FillListOfPoints()
@@ -159,6 +283,7 @@ namespace A_star_navigation
                 btnOdrediRutu.Enabled = true;
                 txtPocetnaTocka.Enabled = true;
                 txtZavrsnaTocka.Enabled = true;
+                DrawRoutes();
             }
             SetUpMap();
         }
