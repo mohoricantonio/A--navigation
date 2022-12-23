@@ -19,37 +19,77 @@ namespace A_star_navigation
 
         public static string VratiRutu(TockaGrafa pocetnaTocka, TockaGrafa zavrsnaTocka)
         {
-            string returnMe = pocetnaTocka.naziv + "->";
-            TockaGrafa sljedecaTocka = pocetnaTocka;
-            TockaGrafa prethodnaTocka = null;
-            TockaGrafa pom = null;
-            Dictionary<TockaGrafa, double> tezineTocaka = new Dictionary<TockaGrafa, double>();
+            Dictionary<TockaGrafa, double> tezinaTocke = new Dictionary<TockaGrafa, double>();
+            Dictionary<TockaGrafa, double> prethodnaUdaljenost = new Dictionary<TockaGrafa, double>();
 
-            tezineTocaka[sljedecaTocka] = 1000000000;
-            double ukupnaUdaljenost = 0;
-            pom = sljedecaTocka;
+            List<TockaGrafa> otvorena = new List<TockaGrafa>();
+            List<TockaGrafa> zatvorena = new List<TockaGrafa>();
 
-            while (sljedecaTocka != zavrsnaTocka)
+            prethodnaUdaljenost[pocetnaTocka] = 0;
+            TockaGrafa trenutna = pocetnaTocka;
+            TockaGrafa prethodna = pocetnaTocka;
+            tezinaTocke[trenutna] = VratiUdaljenost(trenutna, zavrsnaTocka) + prethodnaUdaljenost[trenutna];
+
+            while (trenutna != zavrsnaTocka)
             {
-                foreach(TockaGrafa t in sljedecaTocka.ListaSusjeda)
+                zatvorena.Add(trenutna);
+
+                foreach (TockaGrafa t in trenutna.ListaSusjeda)
                 {
-                    if(t==prethodnaTocka) continue;
-                    tezineTocaka[t] = VratiUdaljenost(sljedecaTocka, t) + (VratiUdaljenost(t, zavrsnaTocka));
-
-                    System.Windows.Forms.MessageBox.Show("Gledam točku " + t.naziv + ", a došao sam od "+
-                        sljedecaTocka.naziv + " i njihove težine su: " + tezineTocaka[t] + " - " +
-                        tezineTocaka[sljedecaTocka]);
-
-                    if (tezineTocaka[t] < tezineTocaka[pom]) pom = t;
-
-                    System.Windows.Forms.MessageBox.Show("Pom je trenutno: " + pom.naziv);
+                    if (prethodna == t) continue;
+                    prethodnaUdaljenost[t] = prethodnaUdaljenost[trenutna] + VratiUdaljenost(t, trenutna);
+                    tezinaTocke[t] = prethodnaUdaljenost[t] + VratiUdaljenost(t, zavrsnaTocka);
+                    otvorena.Add(t);
                 }
-                prethodnaTocka = sljedecaTocka;
-                sljedecaTocka = pom;
-                ukupnaUdaljenost += VratiUdaljenost(prethodnaTocka, sljedecaTocka);
-                returnMe += sljedecaTocka.naziv + "->";
+                prethodna = trenutna;
+                trenutna = VratiTockuNajmanjeTezine(otvorena, tezinaTocke);
+                otvorena.Remove(trenutna);
             }
-            return returnMe.Substring(0, returnMe.Length-2);
+            zatvorena.Add(trenutna);
+
+            return VratiKrajnjuRutu(zatvorena);
+        }
+        private static TockaGrafa VratiTockuNajmanjeTezine(List<TockaGrafa> lista, Dictionary<TockaGrafa, double> tezinaTocke)
+        {
+            TockaGrafa returnMe = null;
+            for(int i = lista.Count-1; i>0; i--)
+            {
+                if(returnMe == null)
+                {
+                    returnMe = lista[i];
+                }
+                for(int j = 0; j<i; j++)
+                {
+                    if (tezinaTocke[lista[j]] < tezinaTocke[returnMe]) returnMe = lista[j];
+                }
+            }
+            return returnMe;
+        }
+        private static string VratiKrajnjuRutu(List<TockaGrafa> lista)
+        {
+            string returnMe = "";
+            TockaGrafa trenutna = lista.Last();
+            List<TockaGrafa> zavrsnaLista = new List<TockaGrafa>();
+
+            zavrsnaLista.Add(lista.Last());
+            while (trenutna != lista.First())
+            {
+                foreach(TockaGrafa t in lista)
+                {
+                    if (trenutna.ListaSusjeda.Contains(t)) {
+                        zavrsnaLista.Add(t);
+                        trenutna = t;
+                        break;
+                    }
+                }
+            }
+            
+            for (int i = zavrsnaLista.Count-1; i>= 0; i--)
+            {
+                returnMe += zavrsnaLista[i].naziv + "->";
+            }
+            
+            return returnMe.Substring(0, returnMe.Length -2);
         }
     }
 }
