@@ -48,14 +48,17 @@ namespace A_star_navigation
             I = new TockaGrafa("I", 46.26166, 16.31232);
             J = new TockaGrafa("J", 46.26522, 16.36279);
 
-            map.MapProvider = GMapProviders.BingMap;
+            map.MapProvider = GMapProviders.GoogleMap;
 
             map.MinZoom = 5;
             map.MaxZoom = 20;
             map.Zoom = 13;
             map.Position = new PointLatLng(46.29986, 16.32683);
             map.ShowCenter = false;
+
+            
         }
+
         private void SetUpMap()
         {
             map.Position = new PointLatLng(46.29986, 16.32683);
@@ -86,13 +89,11 @@ namespace A_star_navigation
             GMapOverlay routeOverlay = new GMapOverlay("routes");
             linija.Add(new PointLatLng(A.lat, A.lon));
             linija.Add(new PointLatLng(B.lat, B.lon));
-
             
             GMapRoute r = new GMapRoute(linija, "Linija");
             r.Stroke.Width = 3;
             r.Stroke.Color = Color.OrangeRed;
             routeOverlay.Routes.Add(r);
-            
             
             linija.RemoveAt(1);
             linija.Add(new PointLatLng(C.lat, C.lon));
@@ -161,7 +162,7 @@ namespace A_star_navigation
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
 
-            linija.RemoveAt(0);
+            linija.RemoveAt(1);
             linija.Add(new PointLatLng(I.lat, I.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
@@ -205,7 +206,6 @@ namespace A_star_navigation
 
         private void FillListOfPoints()
         {
-            
             points = new List<PointLatLng>();
             points.Add(new PointLatLng(A.lat, A.lon));
             points.Add(new PointLatLng(B.lat, B.lon));
@@ -218,8 +218,6 @@ namespace A_star_navigation
             points.Add(new PointLatLng(I.lat, I.lon));
             points.Add(new PointLatLng(J.lat, J.lon));
             DodajSusjede();
-
-            
         }
 
         private void DodajSusjede()
@@ -271,7 +269,16 @@ namespace A_star_navigation
 
         private void btnOdrediRutu_Click(object sender, EventArgs e)
         {
-            
+            if(cmbPocetnaTocka.SelectedItem == null || cmbZavrsnaTocka.SelectedItem == null)
+                MessageBox.Show("Niste odabrali obje točke!");
+            else if (cmbPocetnaTocka.SelectedItem == cmbZavrsnaTocka.SelectedItem)
+                MessageBox.Show("Početna i završna točka ne mogu biti iste!");
+            else
+            {
+                TockaGrafa pocetnaTocka = VratiTocku(cmbPocetnaTocka);
+                TockaGrafa zavrsnaTocka = VratiTocku(cmbZavrsnaTocka);
+                txtNajkracaRuta.Text = AStarCalculator.VratiRutu(pocetnaTocka, zavrsnaTocka);
+            }
         }
 
         private void btnDohvatiTocke_Click(object sender, EventArgs e)
@@ -281,11 +288,49 @@ namespace A_star_navigation
             {
                 btnDohvatiTocke.Enabled = false;
                 btnOdrediRutu.Enabled = true;
-                txtPocetnaTocka.Enabled = true;
-                txtZavrsnaTocka.Enabled = true;
+                cmbPocetnaTocka.Enabled = true;
+                cmbZavrsnaTocka.Enabled = true;
                 DrawRoutes();
             }
             SetUpMap();
+        }
+        private TockaGrafa VratiTocku(ComboBox cmb)
+        {
+            switch (cmb.SelectedItem)
+            {
+                case "A":
+                    return A;
+                    break;
+                case "B":
+                    return B;
+                    break;
+                case "C":
+                    return C;
+                    break;
+                case "D":
+                    return D;
+                    break;
+                case "E":
+                    return E;
+                    break;
+                case "F":
+                    return F;
+                    break;
+                case "G":
+                    return G;
+                    break;
+                case "H":
+                    return H;
+                    break;
+                case "I":
+                    return I;
+                    break;
+                case "J":
+                    return J;
+                    break;
+                default:
+                    return null;
+            }
         }
     }
 }
