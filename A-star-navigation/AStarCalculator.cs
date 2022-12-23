@@ -25,7 +25,8 @@ namespace A_star_navigation
             TockaGrafa pom = null;
             Dictionary<TockaGrafa, double> tezineTocaka = new Dictionary<TockaGrafa, double>();
 
-            tezineTocaka[sljedecaTocka] = 1000000;
+            tezineTocaka[sljedecaTocka] = 1000000000;
+            double ukupnaUdaljenost = 0;
             pom = sljedecaTocka;
 
             while (sljedecaTocka != zavrsnaTocka)
@@ -35,16 +36,17 @@ namespace A_star_navigation
                     if(t==prethodnaTocka) continue;
                     tezineTocaka[t] = VratiUdaljenost(sljedecaTocka, t) + (VratiUdaljenost(t, zavrsnaTocka));
 
-                    /*System.Windows.Forms.MessageBox.Show("Gledam točku " + t.naziv + ", a došao sam od "+
+                    System.Windows.Forms.MessageBox.Show("Gledam točku " + t.naziv + ", a došao sam od "+
                         sljedecaTocka.naziv + " i njihove težine su: " + tezineTocaka[t] + " - " +
-                        tezineTocaka[sljedecaTocka]);*/
+                        tezineTocaka[sljedecaTocka]);
 
                     if (tezineTocaka[t] < tezineTocaka[pom]) pom = t;
 
-                    //System.Windows.Forms.MessageBox.Show("Pom je trenutno: " + pom.naziv);
+                    System.Windows.Forms.MessageBox.Show("Pom je trenutno: " + pom.naziv);
                 }
                 prethodnaTocka = sljedecaTocka;
                 sljedecaTocka = pom;
+                ukupnaUdaljenost += VratiUdaljenost(prethodnaTocka, sljedecaTocka);
                 returnMe += sljedecaTocka.naziv + "->";
             }
             return returnMe.Substring(0, returnMe.Length-2);
