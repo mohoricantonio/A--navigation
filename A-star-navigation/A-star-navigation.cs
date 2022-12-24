@@ -36,7 +36,6 @@ namespace A_star_navigation
 
         private void AStarNavigationForm_Load(object sender, EventArgs e)
         {
-
             A = new TockaGrafa("A", 46.33377, 16.26975);
             B = new TockaGrafa("B", 46.31006, 16.28829);
             C = new TockaGrafa("C", 46.28634, 16.25327);
@@ -55,8 +54,6 @@ namespace A_star_navigation
             map.Zoom = 13;
             map.Position = new PointLatLng(46.29986, 16.32683);
             map.ShowCenter = false;
-
-            
         }
 
         private void SetUpMap()
@@ -104,7 +101,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(D.lat, D.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov A
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -122,7 +118,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(E.lat, E.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov B
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -135,7 +130,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(I.lat, I.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov C
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -153,7 +147,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(H.lat, H.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov D
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -166,7 +159,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(I.lat, I.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov E
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -174,7 +166,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(G.lat, G.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov F
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -182,7 +173,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(J.lat, J.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov G
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -190,7 +180,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(J.lat, J.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov H
 
             linija.RemoveAt(1);
             linija.RemoveAt(0);
@@ -198,8 +187,6 @@ namespace A_star_navigation
             linija.Add(new PointLatLng(J.lat, J.lon));
             r = new GMapRoute(linija, "Linija");
             routeOverlay.Routes.Add(r);
-            //gotov I
-            //Sa j su vec svi spojeni
 
             map.Overlays.Add(routeOverlay);
         }

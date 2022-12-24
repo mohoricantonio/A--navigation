@@ -13,7 +13,6 @@ namespace A_star_navigation
         {
             var prvaTocka = new GeoCoordinate(tocka1.lat, tocka1.lon);
             var drugaTocka = new GeoCoordinate(tocka2.lat, tocka2.lon);
-
             return prvaTocka.GetDistanceTo(drugaTocka);
         }
 
@@ -36,7 +35,6 @@ namespace A_star_navigation
 
                 foreach (TockaGrafa t in trenutna.ListaSusjeda)
                 {
-                    //System.Windows.Forms.MessageBox.Show("Gledam " + t.naziv);
                     if (prethodna == t) continue;
                     if (tezinaTocke.ContainsKey(t) == true)
                     {
@@ -46,7 +44,6 @@ namespace A_star_navigation
                             prethodnaUdaljenost[t] = prethodnaUdaljenost[trenutna] + VratiUdaljenost(t, trenutna);
                             tezinaTocke[t] = prethodnaUdaljenost[t] + VratiUdaljenost(t, zavrsnaTocka);
                             otvorena.Add(t);
-                            //System.Windows.Forms.MessageBox.Show("Dodajem u otvorenu listu: " + t.naziv + " - " + tezinaTocke[t]);
                         }
                     }
                     else
@@ -54,15 +51,12 @@ namespace A_star_navigation
                         prethodnaUdaljenost[t] = prethodnaUdaljenost[trenutna] + VratiUdaljenost(t, trenutna);
                         tezinaTocke[t] = prethodnaUdaljenost[t] + VratiUdaljenost(t, zavrsnaTocka);
                         otvorena.Add(t);
-                        //System.Windows.Forms.MessageBox.Show("Dodajem u otvorenu listu: " + t.naziv + " - " + tezinaTocke[t]);
                     }
                     
                 }
                 prethodna = trenutna;
                 trenutna = VratiTockuNajmanjeTezine(otvorena, tezinaTocke);
                 otvorena.Remove(trenutna);
-                //System.Windows.Forms.MessageBox.Show("Trenutna " + trenutna.naziv);
-                //Print(zatvorena, otvorena);
             }
             zatvorena.Add(trenutna);
 
@@ -79,10 +73,7 @@ namespace A_star_navigation
                 }
                 for(int j = 0; j<i; j++)
                 {
-                    //System.Windows.Forms.MessageBox.Show("Uspoređujem " + lista[j].naziv + " - " + tezinaTocke[lista[j]] + " i " + 
-                       // returnMe.naziv + " - " + tezinaTocke[returnMe]);
                     if (tezinaTocke[lista[j]] < tezinaTocke[returnMe]) returnMe = lista[j];
-                    //System.Windows.Forms.MessageBox.Show("returnMe je " + returnMe.naziv);
                 }
             }
             return returnMe;
@@ -112,17 +103,6 @@ namespace A_star_navigation
             }
             
             return returnMe.Substring(0, returnMe.Length -2);
-        }
-        private static void Print(List<TockaGrafa> zatvorena, List<TockaGrafa> otvorena)
-        {
-            foreach(var t in zatvorena)
-            {
-                System.Windows.Forms.MessageBox.Show("Zatvorena " + t.naziv);
-            }
-            foreach (var item in otvorena)
-            {
-                System.Windows.Forms.MessageBox.Show("Otvorena " + item.naziv);
-            }
         }
     }
 }
